@@ -1,0 +1,12 @@
+---
+- hosts: gruppo3
+  become: yes
+  remote_user:  user
+  become_user: root
+  become_method: sudo
+  gather_facts: no
+  tasks:
+    - name: Installs nginx web server
+      apt: pkg=apache2 state=installed update_cache=true
+      notify:
+        - start apache2
